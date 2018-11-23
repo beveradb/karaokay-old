@@ -1,4 +1,4 @@
-package com.example.karaokay;
+package uk.projectbread.karaokay;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
