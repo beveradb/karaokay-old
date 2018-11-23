@@ -14,16 +14,16 @@ class Dashboard extends StatelessWidget {
           initialData: userBloc.user,
           stream: userBloc.stream,
           builder: (ctx, snap) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(snap.data.username),
-              SizedBox(height: 20.0),
-              RaisedButton(
-                child: Text('LOGOUT'),
-                onPressed: AuthService().handleSignOut,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(snap.data.username),
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                    child: Text('LOGOUT'),
+                    onPressed: AuthService().handleSignOut,
+                  ),
+                ],
               ),
-            ],
-          ),
         ),
       ),
     );

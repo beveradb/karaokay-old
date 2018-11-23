@@ -38,7 +38,8 @@ class AppState extends State<App> {
       } else {
         _auth.handleUserLoggedIn(user).then((ref) {
           ref.get().then((userDoc) {
-            var user = UserModel.fromMap(userDoc.data..addAll({'id': userDoc.documentID}));
+            var user = UserModel.fromMap(
+                userDoc.data..addAll({'id': userDoc.documentID}));
             widget.userBloc.setUser(user);
           });
         });
@@ -51,10 +52,11 @@ class AppState extends State<App> {
     return BlocProvider<UserBloc>(
       bloc: widget.userBloc,
       child: MaterialApp(
-        title: 'Flutter Boilerplate',
+        title: 'Karaokay',
         home: StreamBuilder<UserModel>(
           stream: widget.userBloc.stream,
-          builder: (ctx, snap) => snap.hasData ? UserFetcher(widget.userBloc) : Landing(),
+          builder: (ctx, snap) =>
+              snap.hasData ? UserFetcher(widget.userBloc) : Landing(),
         ),
       ),
     );

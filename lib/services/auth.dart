@@ -1,7 +1,8 @@
 import 'dart:async';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,7 +28,8 @@ class AuthService {
     return userDoc.exists;
   }
 
-  Future<void> _createUser(FirebaseUser user) => usersRef.document(user.uid).setData({
+  Future<void> _createUser(FirebaseUser user) =>
+      usersRef.document(user.uid).setData({
         'username': user.displayName,
         'email': user.email,
         'imageUrl': user.photoUrl,

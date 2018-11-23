@@ -21,7 +21,8 @@ class _UserFetcherState extends State<UserFetcher> {
         .document(widget.userBloc.user.id)
         .snapshots()
         .listen((userDoc) {
-      var user = UserModel.fromMap(userDoc.data..addAll({'id': userDoc.documentID}));
+      var user =
+          UserModel.fromMap(userDoc.data..addAll({'id': userDoc.documentID}));
       widget.userBloc.setUser(user);
     });
   }
