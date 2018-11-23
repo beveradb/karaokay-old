@@ -8,7 +8,6 @@ import 'package:karaokay/widgets/pager_indicator.dart';
 import 'package:karaokay/widgets/pages.dart';
 
 class Landing extends StatefulWidget {
-
   @override
   _LandingPageState createState() => new _LandingPageState();
 }
@@ -82,36 +81,56 @@ class _LandingPageState extends State<Landing> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Stack(
-        children: [
-          new Page(
-            viewModel: pages[activeIndex],
-            percentVisible: 1.0,
-          ),
-          new PageReveal(
-            revealPercent: slidePercent,
-            child: new Page(
-              viewModel: pages[nextPageIndex],
-              percentVisible: slidePercent,
+      body: new Column(
+        children: <Widget>[
+          new Expanded(
+            child: new Stack(
+              children: [
+                new Page(
+                  viewModel: pages[activeIndex],
+                  percentVisible: 1.0,
+                ),
+                new PageReveal(
+                  revealPercent: slidePercent,
+                  child: new Page(
+                    viewModel: pages[nextPageIndex],
+                    percentVisible: slidePercent,
+                  ),
+                ),
+                new PagerIndicator(
+                  viewModel: new PagerIndicatorViewModel(
+                    pages,
+                    activeIndex,
+                    slideDirection,
+                    slidePercent,
+                  ),
+                ),
+                new PageDragger(
+                  canDragLeftToRight: activeIndex > 0,
+                  canDragRightToLeft: activeIndex < pages.length - 1,
+                  slideUpdateStream: this.slideUpdateStream,
+                )
+              ],
             ),
+            flex: 5,
           ),
-          new PagerIndicator(
-            viewModel: new PagerIndicatorViewModel(
-              pages,
-              activeIndex,
-              slideDirection,
-              slidePercent,
+          new Expanded(
+            child: new Container(
+              decoration: const BoxDecoration(color: Colors.grey),
+              child: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  new Icon(Icons.arrow_forward, size: 50.0),
+                  RaisedButton(
+                    child: Text('Log in with Google'),
+                    onPressed: auth.handleGoogleSignin,
+                  ),
+                  new Icon(Icons.star, size: 50.0),
+                ],
+              ),
             ),
+            flex: 1,
           ),
-          new PageDragger(
-            canDragLeftToRight: activeIndex > 0,
-            canDragRightToLeft: activeIndex < pages.length - 1,
-            slideUpdateStream: this.slideUpdateStream,
-          ),
-          /*RaisedButton(
-            child: Text('Log in with Google'),
-            onPressed: auth.handleGoogleSignin,
-          )*/
         ],
       ),
     );
