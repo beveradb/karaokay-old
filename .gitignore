@@ -28,6 +28,9 @@
 .pub/
 build/
 
+# Firebase / Keys
+google-services.json
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
