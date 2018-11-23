@@ -37,7 +37,7 @@ flutter_icons:
   ios: true
   image_path: "assets/icon/karoakay-logo.png"
   adaptive_icon_background: "#2d7de8"
-  adaptive_icon_foreground: "assets/icon/foreground.png"
+  adaptive_icon_foreground: "assets/icon/karoakay-logo-foreground.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
